@@ -1,0 +1,16 @@
+# The git URL of the git repo to sync
+repo_url = "https://github.com/smartycope/sync-repo-service.git"
+
+# The path locally to the git repo to sync
+repo_path = "~/sync-repo-service"
+
+# If true, the service will use a webhook to trigger updates
+# If false, poll the repo every update_interval_seconds
+use_webhook = false
+
+# The path to the webhook endpoint. This can be whatever you want, as long as
+# it matches the path you provided in the webhook service
+webhook_path = "/sync-repo-service/webhook/"
+
+# The interval in seconds to check for updates if use_webhook is false
+update_interval_seconds = 60

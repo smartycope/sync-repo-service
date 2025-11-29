@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sync-repo-service"
+dynamic = ["version"]
+description = 'A python script you can add as a service to run in the background and keep a git repo up to date using webhooks'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Copeland Carter", email = "smartycope@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/Copeland Carter/sync-repo-service#readme"
+Issues = "https://github.com/Copeland Carter/sync-repo-service/issues"
+Source = "https://github.com/Copeland Carter/sync-repo-service"
+
+[tool.hatch.version]
+path = "src/sync_repo_service/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/sync_repo_service tests}"
+
+[tool.coverage.run]
+source_pkgs = ["sync_repo_service", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/sync_repo_service/__about__.py",
+]
+
+[tool.coverage.paths]
+sync_repo_service = ["src/sync_repo_service", "*/sync-repo-service/src/sync_repo_service"]
+tests = ["tests", "*/sync-repo-service/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
